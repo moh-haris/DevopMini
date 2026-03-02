@@ -1,0 +1,25 @@
+---
+- name: Deploy Scientific Calculator Container
+  hosts: calculator
+  become: yes
+
+  tasks:
+
+    - name: Pull latest Docker image
+      docker_image:
+        name: mdharis285046/scientific-calculator
+        tag: "1.0"
+        source: pull
+
+    - name: Remove old container if exists
+      docker_container:
+        name: scientific-calculator-container
+        state: absent
+
+    - name: Run calculator container
+      docker_container:
+        name: scientific-calculator-container
+        image: mdharis285046/scientific-calculator:1.0
+        state: started
+        interactive: true
+        tty: true
