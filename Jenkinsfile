@@ -49,12 +49,14 @@ pipeline {
     post {
         success {
             mail to: 'estriskrounder@gmail.com',
-                 subject: "Scientific Calculator Build Successfully"
+                 subject: "Scientific Calculator Build Successfully",
+                 body: "Build completed successfully."
         }
 
         failure {
             mail to: 'estriskrounder@gmail.com',
-                 subject: "Scientific Calculator Build Failed"
+                 subject: "Scientific Calculator Build Failed",
+                 body: "Build failed. Check Jenkins console output."
         }
     }
 }
