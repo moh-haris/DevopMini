@@ -48,10 +48,13 @@ pipeline {
 
     post {
         success {
-            echo 'Build Successful'
+            mail to: 'estriskrounder@gmail.com',
+                 subject: "Scientific Calculator Build Successfully"
         }
+
         failure {
-            echo 'Build Failed'
+            mail to: 'estriskrounder@gmail.com',
+                 subject: "Scientific Calculator Build Failed"
         }
     }
 }
