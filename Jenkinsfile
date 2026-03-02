@@ -44,19 +44,24 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy via Ansible') {
+            steps {
+                sh 'ansible-playbook -i ansible/inventory ansible/deploy.yml'
+            }
+        }
     }
 
     post {
         success {
             mail to: 'estriskrounder@gmail.com',
-                 subject: "Scientific Calculator Build Successfully",
-                 body: "Build completed successfully."
+                 subject: "Build & Deploy Successful",
+                 body: "Scientific Calculator deployed successfully."
         }
-
         failure {
             mail to: 'estriskrounder@gmail.com',
-                 subject: "Scientific Calculator Build Failed",
-                 body: "Build failed. Check Jenkins console output."
+                 subject: "Build or Deploy Failed",
+                 body: "Pipeline failed. Check Jenkins logs."
         }
     }
 }
