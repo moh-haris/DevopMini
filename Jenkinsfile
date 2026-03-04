@@ -12,6 +12,12 @@ pipeline {
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Test') {
             steps {
                 sh 'mvn clean test'
@@ -44,6 +50,12 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy with Ansible') {
+            steps {
+                sh 'ansible-playbook -i ansible/inventory ansible/deploy.yml'
+            }
+        }
     }
 
     post {
@@ -52,6 +64,7 @@ pipeline {
                  subject: "Build & Deploy Successful",
                  body: "Scientific Calculator deployed successfully."
         }
+
         failure {
             mail to: 'estriskrounder@gmail.com',
                  subject: "Build or Deploy Failed",
