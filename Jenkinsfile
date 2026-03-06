@@ -44,8 +44,8 @@ pipeline {
                     passwordVariable: 'PASS'
                 )]) {
                     sh '''
-                        echo $PASS | docker login -u $USER --password-stdin
-                        docker push $DOCKER_IMAGE
+        echo $PASS | docker login -u $USER --password-stdin
+         docker push $DOCKER_IMAGE
                     '''
                 }
             }
@@ -53,7 +53,7 @@ pipeline {
 
         stage('Deploy with Ansible') {
             steps {
-                sh 'ansible-playbook -i ansible/inventory ansible/deploy.yml'
+       sh 'ansible-playbook -i ansible/inventory ansible/deploy.yml'
             }
         }
     }
