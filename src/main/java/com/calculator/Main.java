@@ -9,7 +9,7 @@ public class Main {
         System.out.print("Welcome to my calc prog ");
 
         while (true) {
-            System.out.println("\nScientific Calc");
+            System.out.println("\nScientific Calculator");
             System.out.println("1. Square Root");
             System.out.println("2. Factorial");
             System.out.println("3. Natural Log ");
